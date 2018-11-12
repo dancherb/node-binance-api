@@ -363,7 +363,7 @@ let api = function Binance() {
     const subscribe = function (endpoint, callback, reconnect = false, opened_callback = false) {
 
         let httpsproxy = process.env.https_proxy_binance || process.env.https_proxy || false;
-        let socksproxy = process.env.socks_proxy_binance || process.env.socks_proxy || false;
+        let socksproxy = process.env.socks_proxy || false;
         let ws = false;
 
         if (socksproxy !== false) {
@@ -413,7 +413,7 @@ let api = function Binance() {
     const subscribeCombined = function (streams, callback, reconnect = false, opened_callback = false) {
 
         let httpsproxy = process.env.https_proxy_binance || process.env.https_proxy || false;
-        let socksproxy = process.env.socks_proxy_binance || process.env.https_proxy || false;
+        let socksproxy = process.env.https_proxy || false;
         const queryParams = streams.join('/');
         let ws = false;
 
