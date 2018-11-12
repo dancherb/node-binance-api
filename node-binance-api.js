@@ -85,7 +85,7 @@ let api = function Binance() {
     }
 
     const addProxy = opt => {
-        let socksproxy = process.env.socks_proxy || false;
+        let socksproxy = process.env.socks_proxy_binance || process.env.socks_proxy || false;
         if (socksproxy === false) return opt;
         socksproxy = proxyReplacewithIp(socksproxy);
 
@@ -117,6 +117,7 @@ let api = function Binance() {
         qs: data,
         method: method,
         timeout: Binance.options.recvWindow,
+        // proxy: process.env.QUOTAGUARDSTATIC_URL,
         headers: {
             'User-Agent': userAgent,
             'Content-type': contentType,
@@ -361,8 +362,8 @@ let api = function Binance() {
      */
     const subscribe = function (endpoint, callback, reconnect = false, opened_callback = false) {
 
-        let httpsproxy = process.env.https_proxy || false;
-        let socksproxy = process.env.socks_proxy || false;
+        let httpsproxy = process.env.https_proxy_binance || process.env.https_proxy || false;
+        let socksproxy = process.env.socks_proxy_binance || process.env.socks_proxy || false;
         let ws = false;
 
         if (socksproxy !== false) {
@@ -411,8 +412,8 @@ let api = function Binance() {
      */
     const subscribeCombined = function (streams, callback, reconnect = false, opened_callback = false) {
 
-        let httpsproxy = process.env.https_proxy || false;
-        let socksproxy = process.env.socks_proxy || false;
+        let httpsproxy = process.env.https_proxy_binance || process.env.https_proxy || false;
+        let socksproxy = process.env.socks_proxy_binance || process.env.https_proxy || false;
         const queryParams = streams.join('/');
         let ws = false;
 
@@ -819,7 +820,7 @@ let api = function Binance() {
         */
         roundStep: function (qty, stepSize) {
             const precision = stepSize.toString().split('.')[1].length || 0;
-            return ((Math.floor(qty / stepSize) | 0) * stepSize).toFixed(precision);
+            return ((Math.round(qty / stepSize) | 0) * stepSize).toFixed(precision);
         },
 
         /**
@@ -1212,7 +1213,7 @@ let api = function Binance() {
             const params = typeof symbol === 'string' ? '?symbol=' + symbol : '';
             if (typeof symbol === 'function') callback = symbol; // backwards compatibility
 
-            let socksproxy = process.env.socks_proxy || false;
+            let socksproxy = process.env.socks_proxy_binance || process.env.socks_proxy || false;
 
             let opt = {
                 url: base + 'v3/ticker/price' + params,
@@ -1251,7 +1252,7 @@ let api = function Binance() {
             const params = typeof symbol === 'string' ? '?symbol=' + symbol : '';
             if (typeof symbol === 'function') callback = symbol; // backwards compatibility
 
-            let socksproxy = process.env.socks_proxy || false;
+            let socksproxy = process.env.socks_proxy_binance || process.env.socks_proxy || false;
 
             let opt = {
                 url: base + 'v3/ticker/bookTicker' + params,
