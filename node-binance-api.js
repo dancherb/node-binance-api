@@ -12,8 +12,6 @@
  * @return {object} instance to class object
  */
 let api = function Binance() {
-    console.log('process.env.https_proxy_binance', process.env.https_proxy_binance)
-
     let Binance = this; // eslint-disable-line consistent-this
     'use strict'; // eslint-disable-line no-unused-expressions
 
