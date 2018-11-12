@@ -85,7 +85,7 @@ let api = function Binance() {
     }
 
     const addProxy = opt => {
-        let socksproxy = process.env.socks_proxy_binance || process.env.socks_proxy || false;
+        let socksproxy = process.env.socks_proxy || false;
         if (socksproxy === false) return opt;
         socksproxy = proxyReplacewithIp(socksproxy);
 
@@ -1213,7 +1213,7 @@ let api = function Binance() {
             const params = typeof symbol === 'string' ? '?symbol=' + symbol : '';
             if (typeof symbol === 'function') callback = symbol; // backwards compatibility
 
-            let socksproxy = process.env.socks_proxy_binance || process.env.socks_proxy || false;
+            let socksproxy = process.env.socks_proxy || false;
 
             let opt = {
                 url: base + 'v3/ticker/price' + params,
@@ -1252,7 +1252,7 @@ let api = function Binance() {
             const params = typeof symbol === 'string' ? '?symbol=' + symbol : '';
             if (typeof symbol === 'function') callback = symbol; // backwards compatibility
 
-            let socksproxy = process.env.socks_proxy_binance || process.env.socks_proxy || false;
+            let socksproxy = process.env.socks_proxy || false;
 
             let opt = {
                 url: base + 'v3/ticker/bookTicker' + params,
