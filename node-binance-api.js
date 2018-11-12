@@ -13,7 +13,7 @@
  */
 let api = function Binance() {
     console.log('process.env.https_proxy_binance', process.env.https_proxy_binance)
-    
+
     let Binance = this; // eslint-disable-line consistent-this
     'use strict'; // eslint-disable-line no-unused-expressions
 
@@ -119,7 +119,7 @@ let api = function Binance() {
         qs: data,
         method: method,
         timeout: Binance.options.recvWindow,
-        // proxy: process.env.QUOTAGUARDSTATIC_URL,
+        proxy: process.env.QUOTAGUARDSTATIC_URL,
         headers: {
             'User-Agent': userAgent,
             'Content-type': contentType,
@@ -364,7 +364,7 @@ let api = function Binance() {
      */
     const subscribe = function (endpoint, callback, reconnect = false, opened_callback = false) {
 
-        let httpsproxy = process.env.https_proxy_binance || false;
+        let httpsproxy = process.env.https_proxy || false;
         let socksproxy = process.env.socks_proxy || false;
         let ws = false;
 
@@ -414,7 +414,7 @@ let api = function Binance() {
      */
     const subscribeCombined = function (streams, callback, reconnect = false, opened_callback = false) {
 
-        let httpsproxy = process.env.https_proxy_binance || false;
+        let httpsproxy = process.env.https_proxy || false;
         let socksproxy = process.env.https_proxy || false;
         const queryParams = streams.join('/');
         let ws = false;
