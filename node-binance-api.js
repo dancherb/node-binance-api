@@ -1326,7 +1326,7 @@ let api = function Binance() {
         */
         withdraw: function (asset, address, amount, addressTag = false, callback = false) {
             let params = { asset, address, amount };
-            params.name = 'API Withdraw';
+            // params.name = 'API Withdraw';
             if (addressTag) params.addressTag = addressTag;
             signedRequest(wapi + 'v3/withdraw.html', params, callback, 'POST');
         },
